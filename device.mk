@@ -46,6 +46,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fastbootd
     
+# NFC stack (AOSP)
+PRODUCT_PACKAGES += \
+    NfcNci
+    
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl \

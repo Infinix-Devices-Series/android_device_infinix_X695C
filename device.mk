@@ -27,6 +27,7 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    init.mt6785.rc \
     fstab.mt6785
 
 # Fstab

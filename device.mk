@@ -23,6 +23,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/rootdir/etc/fstab.mt6785:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6785
 
+# fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd
     
 # Keylayout
 PRODUCT_COPY_FILES += \

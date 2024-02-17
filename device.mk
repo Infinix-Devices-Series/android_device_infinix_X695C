@@ -4,7 +4,14 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := device/infinix/X695C
+DEVICE_PATH := device/infinix/X695C
+
+# Installs gsi keys into ramdisk, to boot a GSI with verified boot.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -12,8 +19,29 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
     
-# Dalvik
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+# IMS
+$(call inherit-product, vendor/mediatek/ims/mtk-ims.mk)
+
+# Engineer Mode
+$(call inherit-product, vendor/mediatek/ims/mtk-engi.mk)
+
+# Audio
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_policy_configuration.xml \
+    $(LOCAL_PATH)/configs/audio/audio_effects.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/audio_effects.conf
+    
+# Boot animation
+TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 2340
+TARGET_BOOT_ANIMATION_RES := 1080
+
+# Bluetooth
+PRODUCT_PACKAGES += \
+    libldacBT_dec
+
+# Camera
+PRODUCT_PACKAGES += \
+    GoogleCameraGo
     
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
@@ -46,23 +74,31 @@ PRODUCT_PACKAGES += \
     libhwbinder \
     libhwbinder.vendor
     
-# IMS
-PRODUCT_BOOT_JARS += \
-    mediatek-common \
-    mediatek-framework \
-    mediatek-ims-base \
-    mediatek-ims-common \
-    mediatek-telecom-common \
-    mediatek-telephony-base \
-    mediatek-telephony-common
-    
-$(call inherit-product, vendor/mediatek/ims/mtk-ims.mk)
+# KPOC
+PRODUCT_PACKAGES += \
+    libsuspend \
+    android.hardware.health@2.0
 
-# Telephony
-PRODUCT_PACKAGES += vendor.mediatek.hardware.videotelephony@1.0
+# RcsService
+PRODUCT_PACKAGES += \
+    RcsService
 
+# ImsInit hack
+PRODUCT_PACKAGES += \
+    ImsInit
+
+# WiFi
+PRODUCT_PACKAGES += \
+    WifiOverlay \
+    TetheringConfigOverlay
+
+# Vendor overlay
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/permissions/privapp-permissions-mediatek.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mediatek.xml
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/vendor-overlay/,$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION))
+
+# APN's
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
     
 # fastbootd
 PRODUCT_PACKAGES += \
@@ -71,6 +107,10 @@ PRODUCT_PACKAGES += \
 # NFC stack (AOSP)
 PRODUCT_PACKAGES += \
     NfcNci
+    
+# Performance level
+PRODUCT_PACKAGES += \
+    init.performance_level.rc
     
 # Keylayout
 PRODUCT_COPY_FILES += \

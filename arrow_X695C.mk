@@ -7,18 +7,24 @@
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_system_ext.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_system_ext.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit from Infinix-X695C device
 $(call inherit-product, device/infinix/X695C/device.mk)
 
 # Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/arrow/config/common.mk)
 
-PRODUCT_NAME := lineage_X695C
+DEVICE_MAINTAINER := xoo2001
+TARGET_BOOT_ANIMATION_RES := 1080
+
+PRODUCT_NAME := arrow_X695C
 PRODUCT_DEVICE := X695C
 PRODUCT_MANUFACTURER := INFINIX
 PRODUCT_BRAND := Infinix
-PRODUCT_MODEL := Infinix Note 10 Pro
+PRODUCT_MODEL := Infinix X695C
 
 PRODUCT_GMS_CLIENTID_BASE := android-infinix
 

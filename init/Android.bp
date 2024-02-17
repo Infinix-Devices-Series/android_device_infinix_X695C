@@ -16,7 +16,7 @@
 cc_library_static {
     name: "libinit_X695C",
     recovery_available: true,
-    srcs: ["init_note11.cpp"],
+    srcs: ["init_X695C.cpp"],
     shared_libs: ["libbase"],
     include_dirs: [
         "system/core/base/include",

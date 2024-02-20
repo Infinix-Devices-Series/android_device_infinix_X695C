@@ -24,6 +24,12 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_X695C
 
 # A/B
 AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    boot \
+    product \
+    system \
+    system_ext \
+    vbmeta
 
 # Audio
 USE_CUSTOM_AUDIO_POLICY := 1

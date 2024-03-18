@@ -15,12 +15,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 $(call inherit-product, device/infinix/X695C/device.mk)
 
 # Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/arrow/config/common.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 DEVICE_MAINTAINER := xoo2001
 TARGET_BOOT_ANIMATION_RES := 1080
 
-PRODUCT_NAME := arrow_X695C
+PRODUCT_NAME := lineage_X695C
 PRODUCT_DEVICE := X695C
 PRODUCT_MANUFACTURER := INFINIX
 PRODUCT_BRAND := Infinix

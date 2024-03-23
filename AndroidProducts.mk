@@ -15,9 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-   $(LOCAL_DIR)/nad_hot10.mk
-
-COMMON_LUNCH_CHOICES := \
-    nad_hot10-user \
-    nad_hot10-userdebug \
-    nad_hot10-eng
+   $(LOCAL_DIR)/lineage_X695C.mk

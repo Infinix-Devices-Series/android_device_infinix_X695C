@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/infinix/hot10
+DEVICE_PATH := device/infinix/X695C
 
 # Installs gsi keys into ramdisk, to boot a GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
@@ -23,7 +23,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product, vendor/infinix/hot10/hot10-vendor.mk)
+$(call inherit-product, vendor/infinix/X695C/X695C-vendor.mk)
 
 # IMS
 $(call inherit-product, vendor/mediatek/ims/mtk-ims.mk)
@@ -64,12 +64,12 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.mt6768.rc \
-    fstab.mt6768
+    init.mt6785.rc \
+    fstab.mt6785
 
 # Fstab
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/rootdir/etc/fstab.mt6768:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6768
+    $(DEVICE_PATH)/rootdir/etc/fstab.mt6785:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6785
 
 # Keylayout
 PRODUCT_COPY_FILES += \

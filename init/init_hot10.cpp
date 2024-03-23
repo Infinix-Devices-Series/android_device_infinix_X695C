@@ -104,7 +104,7 @@ void vendor_load_properties()
     property_override("dalvik.vm.heapminfree", heapminfree);
     property_override("dalvik.vm.heapmaxfree", heapmaxfree);
 
-    string model = "Infinix Hot 10";
+    string model = "Infinix Note 10 Pro";
 
     // Override all partitions' props
     string prop_partitions[] = { "", "odm.", "product.", "system.", "system_ext.", "vendor." };
